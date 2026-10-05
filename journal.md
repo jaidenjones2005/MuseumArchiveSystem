@@ -11,3 +11,9 @@ The swap-with-last removal method is more efficient than shifting every element 
 The LinkedCollection allows new items to be inserted in O(1) time because each new node is added directly to the head of the linked list. It does not need to search for an empty position or shift any existing elements.
 
 One trade-off is that a linked collection requires additional memory for every item because each node stores both the data and a reference to the next node. An array stores its elements in contiguous memory without requiring a separate link for every item. Arrays also usually have better cache locality because their elements are stored next to each other in memory. Linked list nodes can be located in different areas of memory, which can make traversal less efficient even though the collection can grow dynamically.
+
+## Phase 3 - Comparable and Java Collections
+
+The Comparable interface establishes a natural ordering by allowing a class to define how its objects should be compared. In the Artifact class, I implemented compareTo so that artifacts are compared using their ID values. This allows Java's Collections.sort method to automatically arrange Artifact objects in alphabetical order by ID.
+
+The equals and compareTo methods should also be consistent with each other. In this project, equals considers two artifacts equal when their IDs match. Since compareTo also compares the ID, it returns 0 when the IDs are the same. Keeping these methods consistent prevents situations where Java considers two objects equal during sorting but unequal when checking them with equals.

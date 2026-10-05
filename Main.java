@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -40,16 +43,26 @@ public class Main {
         if (museum.contains(searchKey)) {
             System.out.println("Artifact found!");
             System.out.println(museum.get(searchKey));
+        } else {
+            System.out.println("Artifact not found.");
         }
 
         System.out.println("\nRemoving B205...");
         museum.remove(searchKey);
 
-        System.out.println("Collection size after removal: " + museum.size());
+        System.out.println(
+                "Collection size after removal: " + museum.size()
+        );
 
         System.out.println("\nRemaining artifacts:");
-        System.out.println(museum.get(new Artifact("A101", "", "")));
-        System.out.println(museum.get(new Artifact("C309", "", "")));
+
+        System.out.println(
+                museum.get(new Artifact("A101", "", ""))
+        );
+
+        System.out.println(
+                museum.get(new Artifact("C309", "", ""))
+        );
 
 
         // ==========================
@@ -93,7 +106,9 @@ public class Main {
 
         if (linkedMuseum.contains(linkedSearchKey)) {
             System.out.println("Artifact found!");
-            System.out.println(linkedMuseum.get(linkedSearchKey));
+            System.out.println(
+                    linkedMuseum.get(linkedSearchKey)
+            );
         } else {
             System.out.println("Artifact not found.");
         }
@@ -128,5 +143,63 @@ public class Main {
                         new Artifact("F630", "", "")
                 )
         );
+
+
+        // ==================================
+        // PHASE 3 - Comparable and ArrayList
+        // ==================================
+        System.out.println(
+                "\n=== PHASE 3: SORTED CATALOG ==="
+        );
+
+        ArrayList<Artifact> museumList = new ArrayList<>();
+
+        // Add artifacts in deliberately unsorted order
+        museumList.add(
+                new Artifact(
+                        "M04",
+                        "Medieval Crown",
+                        "Middle Ages"
+                )
+        );
+
+        museumList.add(
+                new Artifact(
+                        "A01",
+                        "Ancient Pottery",
+                        "Ancient"
+                )
+        );
+
+        museumList.add(
+                new Artifact(
+                        "Z99",
+                        "Modern Sculpture",
+                        "Modern"
+                )
+        );
+
+        museumList.add(
+                new Artifact(
+                        "B12",
+                        "Bronze Helmet",
+                        "Bronze Age"
+                )
+        );
+
+        System.out.println("\nBefore sorting:");
+
+        for (Artifact artifact : museumList) {
+            System.out.println(artifact);
+        }
+
+        // Uses Artifact.compareTo() to sort by ID
+        Collections.sort(museumList);
+
+        System.out.println("\nAfter sorting:");
+
+        for (Artifact artifact : museumList) {
+            System.out.println(artifact);
+        }
     }
 }
