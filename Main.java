@@ -2,9 +2,13 @@ public class Main {
 
     public static void main(String[] args) {
 
+        // =========================
+        // PHASE 1 - ArrayCollection
+        // =========================
+        System.out.println("=== PHASE 1: ARRAY COLLECTION ===");
+
         ArrayCollection<Artifact> museum = new ArrayCollection<>();
 
-        // Add sample artifacts
         Artifact artifact1 = new Artifact(
                 "A101",
                 "Ancient Stone Tool",
@@ -29,7 +33,6 @@ public class Main {
 
         System.out.println("Original collection size: " + museum.size());
 
-        // Search using only the artifact ID
         Artifact searchKey = new Artifact("B205", "", "");
 
         System.out.println("\nSearching for B205...");
@@ -37,25 +40,93 @@ public class Main {
         if (museum.contains(searchKey)) {
             System.out.println("Artifact found!");
             System.out.println(museum.get(searchKey));
-        } else {
-            System.out.println("Artifact not found.");
         }
 
-        // Remove B205
         System.out.println("\nRemoving B205...");
         museum.remove(searchKey);
 
         System.out.println("Collection size after removal: " + museum.size());
 
-        // Verify remaining artifacts
         System.out.println("\nRemaining artifacts:");
+        System.out.println(museum.get(new Artifact("A101", "", "")));
+        System.out.println(museum.get(new Artifact("C309", "", "")));
 
-        System.out.println(museum.get(
-                new Artifact("A101", "", "")
-        ));
 
-        System.out.println(museum.get(
-                new Artifact("C309", "", "")
-        ));
+        // ==========================
+        // PHASE 2 - LinkedCollection
+        // ==========================
+        System.out.println("\n=== PHASE 2: LINKED COLLECTION ===");
+
+        LinkedCollection<Artifact> linkedMuseum =
+                new LinkedCollection<>();
+
+        Artifact linkedArtifact1 = new Artifact(
+                "D410",
+                "Medieval Sword",
+                "Middle Ages"
+        );
+
+        Artifact linkedArtifact2 = new Artifact(
+                "E520",
+                "Egyptian Statue",
+                "Ancient Egypt"
+        );
+
+        Artifact linkedArtifact3 = new Artifact(
+                "F630",
+                "Viking Shield",
+                "Viking Age"
+        );
+
+        linkedMuseum.add(linkedArtifact1);
+        linkedMuseum.add(linkedArtifact2);
+        linkedMuseum.add(linkedArtifact3);
+
+        System.out.println(
+                "Linked collection size: " + linkedMuseum.size()
+        );
+
+        Artifact linkedSearchKey =
+                new Artifact("E520", "", "");
+
+        System.out.println("\nSearching for E520...");
+
+        if (linkedMuseum.contains(linkedSearchKey)) {
+            System.out.println("Artifact found!");
+            System.out.println(linkedMuseum.get(linkedSearchKey));
+        } else {
+            System.out.println("Artifact not found.");
+        }
+
+        System.out.println("\nRemoving E520...");
+        linkedMuseum.remove(linkedSearchKey);
+
+        System.out.println(
+                "Linked collection size after removal: "
+                        + linkedMuseum.size()
+        );
+
+        System.out.println("\nChecking remaining artifacts:");
+
+        System.out.println(
+                "D410 still exists: "
+                        + linkedMuseum.contains(
+                        new Artifact("D410", "", "")
+                )
+        );
+
+        System.out.println(
+                "E520 still exists: "
+                        + linkedMuseum.contains(
+                        new Artifact("E520", "", "")
+                )
+        );
+
+        System.out.println(
+                "F630 still exists: "
+                        + linkedMuseum.contains(
+                        new Artifact("F630", "", "")
+                )
+        );
     }
 }
